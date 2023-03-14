@@ -81,17 +81,17 @@ impl<'a> SubjectPublicKeyInfo<'a> {
         let algorithm: &'static dyn s::VerificationAlgorithm = match algorithm {
             #[cfg(feature = "rsa")]
             SignatureScheme::RSA_PKCS1_SHA256 if restrictions != TLSv13 => match self.algorithm {
-                include_bytes!("data/alg-rsa-encryption.der") => &s::RSA_PKCS1_2048_8192_SHA256,
+                include_bytes!("data/alg-rsa-encryption.der") => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
                 _ => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
             },
             #[cfg(feature = "rsa")]
             SignatureScheme::RSA_PKCS1_SHA384 if restrictions != TLSv13 => match self.algorithm {
-                include_bytes!("data/alg-rsa-encryption.der") => &s::RSA_PKCS1_2048_8192_SHA384,
+                include_bytes!("data/alg-rsa-encryption.der") => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
                 _ => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
             },
             #[cfg(feature = "rsa")]
             SignatureScheme::RSA_PKCS1_SHA512 if restrictions != TLSv13 => match self.algorithm {
-                include_bytes!("data/alg-rsa-encryption.der") => &s::RSA_PKCS1_2048_8192_SHA512,
+                include_bytes!("data/alg-rsa-encryption.der") => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
                 _ => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
             },
             SignatureScheme::ECDSA_NISTP256_SHA256 => match self.algorithm {
@@ -112,17 +112,17 @@ impl<'a> SubjectPublicKeyInfo<'a> {
             },
             #[cfg(feature = "rsa")]
             SignatureScheme::RSA_PSS_SHA256 if restrictions != TLSv12 => match self.algorithm {
-                include_bytes!("data/alg-rsa-encryption.der") => &s::RSA_PSS_2048_8192_SHA256,
+                include_bytes!("data/alg-rsa-encryption.der") => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
                 _ => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
             },
             #[cfg(feature = "rsa")]
             SignatureScheme::RSA_PSS_SHA384 if restrictions != TLSv12 => match self.algorithm {
-                include_bytes!("data/alg-rsa-encryption.der") => &s::RSA_PSS_2048_8192_SHA384,
+                include_bytes!("data/alg-rsa-encryption.der") => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
                 _ => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
             },
             #[cfg(feature = "rsa")]
             SignatureScheme::RSA_PSS_SHA512 if restrictions != TLSv12 => match self.algorithm {
-                include_bytes!("data/alg-rsa-encryption.der") => &s::RSA_PSS_2048_8192_SHA512,
+                include_bytes!("data/alg-rsa-encryption.der") => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
                 _ => return Err(Error::UnsupportedSignatureAlgorithmForPublicKey),
             },
             _ => return Err(Error::UnsupportedSignatureAlgorithm),

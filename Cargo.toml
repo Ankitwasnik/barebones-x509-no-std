@@ -20,7 +20,7 @@ chrono = "0.4.19"
 
 [features]
 default = ["rsa"]
-rsa = ["ring/alloc"]
+rsa = []
 webpki = ["w"]
 rustls = ["r", "std"]
 std = ["w/std"]
